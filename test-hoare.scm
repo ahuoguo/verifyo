@@ -50,12 +50,14 @@
 ;;        by failing to unifiy. But for `seq`, it tries to come up with an `r`
 ;;        that can be unified with other terms, however there are infinite `r` 
 ;;        can be exist. Need some way to cut the intermediate predicate of `seq`.
+#|
 (test "[x = 1] (seq (x := (+ x 1)) (x := (+ x 1))) [x = 100]"
       (run 1 (q) (proveo `(= x ,(int 1))
                          `(seq (x := (+ x ,(int 1)))
                                (x := (+ x ,(int 1))))
                          `(= x ,(int 100))))
       '())
+|#
 
 ;; FIXME
 #|

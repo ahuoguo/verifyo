@@ -5,9 +5,6 @@
 (require minikanren/numbers)
 
 (require "verifyo.rkt")
-(require "while.rkt")
-(require "while-evalo.rkt")
-(require "smt.rkt")
 
 (check-equal?
  (run 1 (q) (substo/exp (int 1) 'a 'b q)) (list (int 1)))

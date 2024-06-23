@@ -1,6 +1,8 @@
 (load "dmatch.scm")
 (load "while.scm")
 
+;; TODO, set is not defined
+
 ;; A verification condition generator for WHILE, translating to SMT formula.
 ;; Author: Guannan Wei
 
@@ -159,4 +161,13 @@
   (define asserts (map assert-valid queries))
   (append declares (foldl append '() asserts)))
 
-;(verify/smt example1)
+(verify/smt example1)
+(define example1
+  '([assume ((x = 8) ∧ (y = 16))]
+    (while (x > 0)
+           [invariant ((y = (2 * x)) ∧ (x ≥ 0))]
+           (seq (x := (x - 1))
+                (y := (y - 2))))
+    [assert (y = 0)]))
+
+(verify/smt example1)

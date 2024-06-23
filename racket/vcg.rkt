@@ -61,12 +61,12 @@
     [`(skip)
      (values post sc)]))
 
-(wp '(while (x > 0)
-           {invariant ((y = (2 * x)) ∧ (x ≥ 0))}
-           (seq (x := (x - 1))
-                (y := (y - 2))))
-    '(y = 0)
-    '())
+; (wp '(while (x > 0)
+;            {invariant ((y = (2 * x)) ∧ (x ≥ 0))}
+;            (seq (x := (x - 1))
+;                 (y := (y - 2))))
+;     '(y = 0)
+;     '())
 
 (define (vcg/helper pre com post)
   (define-values (pre* sc) (wp com post '()))
@@ -161,10 +161,12 @@
   (define asserts (map assert-valid queries))
   (append declares (foldl append '() asserts)))
 
-#|
-(verify/smt example1)
+(define example1
+  '([assume ((x = 8) ∧ (y = 16))]
+    (while (x > 0)
+           [invariant ((y = (2 * x)) ∧ (x ≥ 0))]
+           (seq (x := (x - 1))
+                (y := (y - 2))))
+    [assert (y = 0)]))
 
-(wp `(if (a = b) (a := 3) (b := 4))
-    `((a = 3) ∨ (b = 4))
-    '())
-|#
+(verify/smt example1)

@@ -4,9 +4,9 @@
 (require minikanren)
 (require minikanren/numbers)
 
-(require "while.rkt")
-(require "while-evalo.rkt")
-(require "smt.rkt")
+;; originally defined from while-evalo.rkt
+(define int
+  (lambda (x) `(int ,(build-num x))))
 
 (provide (all-defined-out))
 

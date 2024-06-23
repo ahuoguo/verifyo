@@ -1,6 +1,6 @@
 (load "mk/mk.scm")
 (load "arithmetic.scm")
-(load "proveo.scm")
+(load "hoare.scm")
 
 (test "(int 0) is a valid number"
       (run 1 (q) (into (int 0)))
